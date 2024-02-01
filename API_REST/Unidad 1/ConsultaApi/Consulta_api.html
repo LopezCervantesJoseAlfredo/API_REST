@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API de Perros</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1 class="text-center">Perros</h1>  
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="form-group text-center">
+          <label for="breed">Selecciona un perro:</label>
+          <select id="breed" class="form-control">
+            <option value="beagle">Beagle</option>
+            <option value="chihuahua">Chihuahua</option>
+          </select>
+        </div>
+        <div class="text-center">
+          <button id="fetchButton" class="btn btn-primary">Mostrar imagen</button>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-6 text-center">
+        <div id="imageContainer"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
