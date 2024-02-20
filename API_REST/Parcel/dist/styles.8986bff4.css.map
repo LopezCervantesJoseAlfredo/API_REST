@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"styles.8986bff4.css","sourceRoot":"..","sourcesContent":[".btn-primary {\r\n    color: white;\r\n    background-color: dodgerblue;\r\n    border: none;\r\n    padding: 10px 20px;\r\n    border-radius: 5px;\r\n    cursor: pointer;\r\n}\r\n"]}
