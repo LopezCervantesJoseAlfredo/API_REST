@@ -1,10 +1,19 @@
-// let carro = {
-//     "marca": "Toyota",
-//     "modelo": "Tacoma",
-//     "año" : "2024",
-//     "dueño": "Alfredo"
-// }
+let carro = {
+    "id": 1,
+    "marca": "Toyota",
+    "modelo": "Tacoma",
+    "año" : "2024",
+    "dueño": "Alfredo"
+}
 
-let carro = req.body;
+let sentenciaSQL = 'update table set '
 
-for(let carro in )
+for (const [propiedad, valor] of Object.entries(carro)) {
+    if (propiedad !== 'id') {
+      sentenciaSQL += `${propiedad} = '${valor}', `;
+    }
+}
+
+sentenciaSQL = sentenciaSQL.slice(0, -2);
+sentenciaSQL += ` WHERE id = ${carro.id};`;
+console.log(sentenciaSQL);
