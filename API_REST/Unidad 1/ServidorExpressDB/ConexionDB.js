@@ -1,4 +1,4 @@
-//CONEXION CON MYSQL
+//Conexion con MySql
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
@@ -47,7 +47,6 @@ app.get('/usuario', (req, res) => {
     );
   }
 });
-
 
 // Insertar un nuevo usuario
 app.post('/usuario', (req, res) => {
@@ -118,4 +117,26 @@ app.put('/usuario/:id', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
+});
+
+// Eliminar un usuario por su ID
+app.delete('/usuario/:id', (req, res) => {
+  const userId = req.params.id;
+
+  connection.query(
+    'DELETE FROM usuario WHERE id = ?',
+    [userId],
+    function(err, results, fields) {
+      if (err) {
+        console.error('Error al ejecutar la consulta:', err);
+        res.status(500).send('Error interno del servidor');
+        return;
+      }
+      if (results.affectedRows === 0) {
+        res.status(404).send('Usuario no encontrado');
+        return;
+      }
+      res.send('Usuario eliminado correctamente');
+    }
+  );
 });
