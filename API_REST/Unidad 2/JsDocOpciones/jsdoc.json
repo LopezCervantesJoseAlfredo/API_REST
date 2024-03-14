@@ -1,0 +1,26 @@
+{
+  "plugins": [],
+  "recurseDepth": 10,
+  "source": {
+      "include": ["./src"],
+      "exclude": [],
+      "includePattern": ".+\\.js(doc|x)?$",
+      "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "sourceType": "module",
+  "tags": {
+      "allowUnknownTags": true,
+      "dictionaries": ["jsdoc","closure"]
+  },
+  "templates": {
+      "cleverLinks": false,
+      "monospaceLinks": false
+  },
+  "opts": {
+      "template": "node_modules/clean-jsdoc-theme",
+      "description": "Documentación para mi proyecto de JavaScript",
+      "encoding": "utf8",
+      "destination": "./doc/",
+      "recurse": true
+  }
+}
