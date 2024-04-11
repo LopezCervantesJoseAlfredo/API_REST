@@ -1,27 +1,24 @@
 const express = require('express');
-const fs = require('fs');
-const path = require('path')
-const formidable = require('formidable');
- 
+const multer = require('multer');
 const app = express();
- 
-app.post('/upload', (req, res, next) => {
- 
-    const form = new formidable.IncomingForm();
-    form.parse(req, function (err, fields, files) {
- 
-        let oldPath = files.image.filepath;
-        let newPath = path.join(__dirname, 'uploads')
-            + '/' + files.image.description
-        let rawData = fs.readFileSync(oldPath)
- 
-        fs.writeFile(newPath, rawData, function (err) {
-            if (err) console.log(err)
-            return res.send("archivo subido correctamente")
-        })
-    })
+const path = require('path');
+const fs = require('fs');
+
+const uploadDestination = path.join(__dirname, 'uploads');
+const upload = multer({ dest: uploadDestination });
+
+app.post('/imagenes', upload.single('imagen'), (req, res) => {
+    console.log(req.file);
+    const newPath = Guardar(req.file);
+    res.send('termina');
 });
- 
+
+function Guardar(file) {
+    const newPath = path.join(uploadDestination, file.originalname);
+    fs.renameSync(file.path, newPath);
+    return newPath;
+}
+
 app.listen(3000, () => {
-    console.log('Example app listening on port 3000!');
+    console.log(`Example app listening on port 3000`);
 });
