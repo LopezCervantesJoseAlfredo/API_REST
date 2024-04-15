@@ -1,22 +1,19 @@
-const express = require('express');
 const https = require('https');
+const express = require('express');
 const fs = require('fs');
 const path = require('path');
 
 const app = express();
-const port = 3000;
 
 const options = {
-  key: fs.readFileSync(path.join(__dirname,'certificado/key.pem')),
-  cert: fs.readFileSync(path.join(__dirname,'certificado/cert.pem')),
+    key: fs.readFileSync(path.join(__dirname, 'certificado/key.pem')),
+    cert: fs.readFileSync(path.join(__dirname, 'certificado/cert.pem'))
 };
 
 app.get('/', (req, res) => {
-  res.send('¡Hola, mundo seguro!');
-});
+    res.json({mensaje: "Servidor express respondiendo"});
+})
 
-const server = https.createServer(options, app);
-
-server.listen(port, () => {
-  console.log(`Servidor Express seguro escuchando en https://localhost:${port}`);
-});
+https.createServer(options, app).listen(3000, () => {
+    console.log("Servidor express escuchando en 3000");
+})
