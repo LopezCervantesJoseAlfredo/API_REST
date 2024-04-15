@@ -1,24 +1,39 @@
-const express = require('express');
-const multer = require('multer');
+const express = require("express");
+const multer = require("multer");
+const path = require("path");
+
 const app = express();
-const path = require('path');
-const fs = require('fs');
 
-const uploadDestination = path.join(__dirname, 'uploads');
-const upload = multer({ dest: uploadDestination });
+const uploadDirectory = path.join(__dirname, "Uploads");
 
-app.post('/imagenes', upload.single('imagen'), (req, res) => {
-    console.log(req.file);
-    const newPath = Guardar(req.file);
-    res.send('termina');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadDirectory);
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
 });
 
-function Guardar(file) {
-    const newPath = path.join(uploadDestination, file.originalname);
-    fs.renameSync(file.path, newPath);
-    return newPath;
-}
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1024 * 5,
+  },
+});
 
-app.listen(8080, () => {
-    console.log(`Example app listening on port 8080`);
+app.post("/upload", upload.single("file"), function (req, res, next) {
+  res.send("Archivo subido exitosamente");
+});
+
+app.use(function (err, req, res, next) {
+  if (err instanceof multer.MulterError) {
+    res.status(400).send("Hubo un error al subir el archivo: " + err.message);
+  } else {
+    res.status(500).send("Hubo un error en el servidor: " + err.message);
+  }
+});
+
+app.listen(3000, function () {
+  console.log("Servidor corriendo en el puerto 3000");
 });
