@@ -1,0 +1,22 @@
+{
+  "name": "areacirculo_alfredo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "AreaCiruclo.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  }
+}
